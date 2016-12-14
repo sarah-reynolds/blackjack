@@ -30,9 +30,15 @@
 	margin-left: -15px;
 }
 
-.btn{
+.btn-elv{
 	width: 100px;
 	font-size: 1em;
+	background-color: #d5a140;
+	color: #F3E5CA;
+	border: 2px solid #886729;
+	padding:  5px;
+	text-shadow: 0 0 10px #3B2C12;
+	border-radius: 0;
 }
 
 body{
