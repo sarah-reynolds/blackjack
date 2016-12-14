@@ -1,0 +1,31 @@
+
+
+.the-table{
+	background-image: url("../images/bg2.png");
+	background-color:  seagreen;
+	border: 5px solid firebrick;
+	border-radius: 10px 10px 50% 50%;
+	margin-top: 50px;
+	padding:  30px 0px;
+	height: 500px;
+}
+
+.card{
+	height:  120px;
+	background-color:  #fff;
+	color:  black;
+	margin:  10px;
+	width: 90px;
+}
+
+.card img{
+	height: 100%;
+}
+
+.btn{
+	width: 100px;
+}
+
+body{
+	color: white;
+}
