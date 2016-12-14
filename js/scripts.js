@@ -21,7 +21,6 @@ $(document).ready(function(){
 	var theDeck = [];
 	var playersHand = [];
 	var dealersHand = [];
-	var total = 0;
 
 	createDeck();
 
@@ -30,31 +29,44 @@ $(document).ready(function(){
 		
 		shuffleDeck();
 		playersHand.push(theDeck[0]);
-		dealersHand.push(theDeck[1]);
-		playersHand.push(theDeck[2]);
-		dealersHand.push(theDeck[3]);
+		theDeck.shift(0);
+		
+		// Add card 1 to the dealers hand
+		dealersHand.push(theDeck[0]);
+		theDeck.shift(0);
+		// Add card 2 to the players hand
+		playersHand.push(theDeck[0]);
+		theDeck.shift(0);
+		// Add card 3 to the dealers hand
+		dealersHand.push(theDeck[0]);
+		theDeck.shift(0);
+		console.log("After Deal " +theDeck);
+		console.log("After Deal Dealers Hand" +dealersHand);
+		console.log("After Deal Players Hand" +playersHand);
+		// Put the first card in the players hand
+		placeCard(playersHand[0], "player","one");
+		// Put the second card in the players hand
+		placeCard(playersHand[1], "player","two");
+		// Put the first card in the dealers hand
+		placeCard(dealersHand[0], "dealer","one");
+		// Put the second card in the dealers hand
+		placeCard(dealersHand[1], "dealer","two");
 
-		// put the first card in the players hand
-		placeCard(playersHand[0], 'player', 'one')
-		// put the second card in the players hand
-		placeCard(playersHand[1], 'player', 'two')
-		// put the first card in the delaers hand
-		placeCard(dealersHand[0], 'dealer', 'one')
-		// put the second card in the dealers hand
-		placeCard(dealersHand[1], 'dealer', 'two')
+		calculateTotal("player", playersHand);
+		calculateTotal("dealer", dealersHand);
 
-		calculateTotal('player',playersHand);
-		calculateTotal('dealer',dealersHand);
-
-	})
+	});
 
 	$('.hit-button').click(function(){
+		hitCard("player", playersHand);
 	// console.log(this)
-	})
+	});
 
 	$('.stand-button').click(function(){
+		var player
+		hitCard("dealer", dealersHand);
 	// console.log(this)
-	})
+	});
 
 
 
@@ -98,6 +110,7 @@ $(document).ready(function(){
 	function calculateTotal(who, theirHand){
 	
 		var cardValue = 0;
+		var total = 0;
 		for(let i = 0; i<theirHand.length; i++){
 			cardValue = Number(theirHand[i].slice(0,-1));
 			if(cardValue > 10){
@@ -105,7 +118,7 @@ $(document).ready(function(){
 			}
 
 			if(cardValue === 1 && total <11){
-				cardValue === 11
+				cardValue = 11
 			}
 			console.log(cardValue);
 			total += cardValue;
@@ -114,6 +127,14 @@ $(document).ready(function(){
 		$(classToTarget).text(total);
 	}
 
+	function hitCard(who, theirHand){
+
+		theirHand.push(theDeck[0]);
+		theDeck.shift(0);
+		calculateTotal(who,theirHand)
+		console.log("After Hit  Hand" +theirHand);
+
+	}
 
 
 });
