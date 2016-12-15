@@ -22,6 +22,12 @@ body{
 	margin-top: 20px;
 }
 
+.card-container, .card-front{
+	height:  120px;
+	width: 85.5px;
+
+}
+
 .card{
 	height:  120px;
 	background-color:  #262A24;
@@ -32,13 +38,40 @@ body{
 	height: 120px;
 	border-radius: 7px;
 	overflow: hidden;
+	perspective: 200px;
 
 }
 
-.card img{
+.card-container{
+	position: relative;
+	transform-style: preserve-3d;
+	transition: all 1s;
+}
+
+.card-front, .card-back{
+	position: absolute;
+	top: 0;
+	left: 0;
+	backface-visibility: hidden;
+}
+
+.card-front{
+	transform: rotateY(180deg);
+}
+
+.card-back{
+	background-image: url("../images/deck.png");
+	width: 85.5px;
+	height: 120px;
+	margin-left: -15px;
+
+}
+
+.card-front img{
 	height: 100%;
 	margin-left: -15px;
 }
+
 
 .btn-elv{
 	width: 120px;
@@ -65,4 +98,8 @@ body{
 
 .message span{
 	color: #F3E5CA;
+}
+
+.flip{
+	transform: rotateY(-180deg);
 }
