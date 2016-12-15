@@ -1,0 +1,64 @@
+#parent{
+	height: 200px;
+	width: 200px;
+	border: 5px solid black;
+	perspective: 200px;
+	transition: all 3s;
+}
+
+#threeDChild{
+	border: 5px solid blue;
+	transition: all 2s;
+	height: 190px;
+	width: 190px;
+}
+
+#parent.flip{
+	perspective: 100px;
+}
+
+#threeDChild.flip{
+	transform: rotateY(180deg);
+
+}
+
+
+/* The parent which is a 3d space */
+.card{
+	height: 300px;
+	width: 300px;
+	border: 2px solid black;
+	perspective: 300px;
+
+}
+
+.face-holder{
+	height: 300px;
+	width: 300px;
+	position: relative;
+	transition: all 2s;
+	transform-style: preserve-3d;
+}
+
+/* the actual face of the card and face of the back need a 3d space */
+.card-front, .card-back{
+	/* abs so they are on to of each other */
+	position: absolute;
+	top:  0;
+	left: 0;
+	border: 2px red solid;
+	backface-visibility: hidden;
+
+}
+
+.card-front{
+	transform: rotateY(180deg);
+}
+
+.card-back{
+
+}
+
+.flip{
+	transform: rotateY(-180deg);
+}

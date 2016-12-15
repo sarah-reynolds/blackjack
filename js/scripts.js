@@ -5,9 +5,11 @@ var playersHand = [];
 var dealersHand = [];
 var topOfDeck = 4;
 
-console.log("the deck length on page load:" + theDeck.length)
+// console.log("the deck length on page load:" + theDeck.length)
 
 $(document).ready(function(){
+
+
 
 	$('.deal-button').click(function(){
 		shuffleDeck();
@@ -23,7 +25,8 @@ $(document).ready(function(){
 
 		calculateTotal(playersHand, 'player');
 		calculateTotal(dealersHand, 'dealer');
-		console.log("the deck length on deal:" + theDeck.length)
+		// console.log("the deck length on deal:" + theDeck.length)
+		// $(this).toggleClass('flip');
 	})
 
 	$('.hit-button').click(function(){
@@ -38,7 +41,14 @@ $(document).ready(function(){
 		calculateTotal(playersHand,'player')
 		}
 
-		console.log("the deck length on hit:" + theDeck.length)
+		playerTotal = calculateTotal(playersHand,'player');
+		dealerTotal = calculateTotal(dealersHand,'dealer');
+
+		if((playerTotal > 21) || (dealerTotal > 16 && (playerTotal >= dealerTotal))){
+			checkWin();
+		}
+
+		// console.log("the deck length on hit:" + theDeck.length)
 		
 	})
 
@@ -52,14 +62,14 @@ $(document).ready(function(){
 		}
 		checkWin();
 
-		console.log("the deck length on stand:" + theDeck.length)
+		// console.log("the deck length on stand:" + theDeck.length)
 
 	})
 
 
 	$('.reset-button').click(function(){
 		reset();
-		console.log("the deck length on reset:" + theDeck.length)
+		// console.log("the deck length on reset:" + theDeck.length)
 
 	})
 
@@ -89,16 +99,21 @@ function checkWin(){
 
 	if(playerTotal > 21){
 		// player busted
+		$('#message-alert').html("You busted. DEALER WINS.");
 	}else if(dealerTotal > 21){
 		// dealer busted, player wins
+		$('#message-alert').html("Dealer busted. YOU WIN!");
 	}else{
 		//no one busted, see who's higher
 		if(playerTotal>dealerTotal){
-			//player one
+			//player won
+			$('#message-alert').html("YOU WIN!");
 		}else if(dealerTotal>playerTotal){
 			// dealer won
+			$('#message-alert').html("You lost.");
 		}else{
 			// it's a tie
+			$('#message-alert').html("It's a tie.");
 		}
 	}
 }
@@ -115,6 +130,7 @@ function reset(){
 	playersHand = [];
 	dealersHand = [];
 	$('.card').html('');
+	$('.message span').html('');
 	playerTotal = calculateTotal(playersHand,'player');
 	dealerTotal = calculateTotal(dealersHand,'dealer');
 
@@ -143,26 +159,28 @@ function placeCard(who, where, whatCard){
 function calculateTotal(hand, who){
     var total = 0; //running total
     var cardValue = 0; //temp value of card
-    var countAce = 0; //ace counter
+    var hasAce = false; //ace counter
     for(let i = 0; i < hand.length; i++){
         cardValue = Number(hand[i].slice(0,-1));
         if(cardValue > 10){
             cardValue = 10;
         }
         if(cardValue == 1){
-            countAce++;
+            hasAce = true;
         }
-        if(cardValue === 1 && total <= 10){
+        if(cardValue == 1 && total <= 10){
             cardValue = 11;
         }
         total += cardValue;
-        while((total > 21)&&(countAce !== 0)){
+
+        if((total > 21)&&(hasAce)){
             total -= 10;
-            countAce--;
+            hasAce = false;
         }
     }
     var classSelector = '.' + who + '-total-number';
     $(classSelector).text(total);
     return total;
+
 }
 

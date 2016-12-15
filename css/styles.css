@@ -1,14 +1,25 @@
 
 
+body{
+	color: #F3E5CA;
+	background-image: url("../images/bg3.jpg");
+	font-family: 'Quintessential', cursive;
+	font-size: 20px;
+}
+
 .the-table{
 	background-image: url("../images/elvish_table_details.png");
 	background-repeat: no-repeat;
 	background-color:  #2E332B;
 	border: 5px solid #41453E;
-	border-radius: 7px 7px 50% 50%;
+	border-radius: 3px 3px 50% 50%;
 	margin-top: 50px;
 	padding-top:  70px;
-	height: 540px;
+	height: 600px;
+}
+
+.player-total, .dealer-total{
+	margin-top: 20px;
 }
 
 .card{
@@ -16,7 +27,6 @@
 	background-color:  #262A24;
 	/* background-image: url("../images/deck.png"); */
 	/* margin-left: -50px; */
-	color:  black;
 	margin:  10px;
 	width: 85.5px;
 	height: 120px;
@@ -31,7 +41,7 @@
 }
 
 .btn-elv{
-	width: 100px;
+	width: 120px;
 	font-size: 1em;
 	background-color: #d5a140;
 	color: #F3E5CA;
@@ -39,15 +49,20 @@
 	padding:  5px;
 	text-shadow: 0 0 10px #3B2C12;
 	border-radius: 0;
+
 }
 
-body{
-	color: white;
-	background-image: url("../images/bg3.jpg");
-	font-family: 'Quintessential', cursive;
-	font-size: 20px;
+.button-wrapper{
+	margin: 30px 0 0 10px;
 }
 
-.margin-top{
-	margin-top: 45px;
+.message{
+	margin-top: 20px;
+	background-color: #262A24;
+	line-height: 40px;
+	color: #545851;
+}
+
+.message span{
+	color: #F3E5CA;
 }
