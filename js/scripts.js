@@ -3,28 +3,18 @@
 var theDeck = createDeck();
 var playersHand = [];
 var dealersHand = [];
-var topOfDeck = 4;
+var handSize = 6;
+var cardHandHTML = '';
+
+
+// var topOfDeck = 4;
 
 // console.log("the deck length on page load:" + theDeck.length)
 
 $(document).ready(function(){
 
-	var handSize = 6;
-
-	var cardHandHTML = '';
-
-	for(var i = 1; i < handSize; i++){
-		cardHandHTML += '<div class="col-sm-1 card card-'+i+'">';
-			cardHandHTML += '<div class="card-container">';
-				cardHandHTML += '<div class="card-front"></div>';
-				cardHandHTML += '<div class="card-back"></div>';
-			cardHandHTML += '</div>';
-		cardHandHTML += '</div>';
-	}
-
-	$('.dealer-cards').html(cardHandHTML);
-	$('.player-cards').html(cardHandHTML);
-
+	
+	buildDivs();
 
 	$('.deal-button').click(function(){
 		shuffleDeck();
@@ -61,7 +51,9 @@ $(document).ready(function(){
 
 		if((playerTotal > 21) || (dealerTotal > 16 && (playerTotal >= dealerTotal))){
 			checkWin();
-		}
+		};
+
+		$('.dealer-total-number').html('?');
 
 		// console.log("the deck length on hit:" + theDeck.length)
 		
@@ -78,40 +70,22 @@ $(document).ready(function(){
 			placeCard('dealer',dealersHand.length,dealersHand[dealersHand.length-1])
 			dealerTotal = calculateTotal(dealersHand,'dealer')
 		}
-
-
 		checkWin();
-
 		// console.log("the deck length on stand:" + theDeck.length)
-
-	})
+	});
 
 
 	$('.reset-button').click(function(){
 		reset();
 		// console.log("the deck length on reset:" + theDeck.length)
-
-	})
-
-	function shuffleDeck(){
-	for(let i = 0; i < 9000; i++){
-
-
-		var random1 = Math.floor(Math.random() * theDeck.length);
-		var random2 = Math.floor(Math.random() * theDeck.length);
-
-		
-
-		var temp = theDeck[random1];
-
-		theDeck[random1] = theDeck[random2];
-		theDeck[random2] = temp;
-
-		}
-
-	}
+	});
 
 });
+
+
+//===== END DOC READY =====//
+
+
 
 function checkWin(){
 	playerTotal = calculateTotal(playersHand,'player');
@@ -136,25 +110,32 @@ function checkWin(){
 			$('#message-alert').html("It's a tie.");
 		}
 	}
-}
+};
 
+
+function shuffleDeck(){
+for(let i = 0; i < 9000; i++){
+
+	var random1 = Math.floor(Math.random() * theDeck.length);
+	var random2 = Math.floor(Math.random() * theDeck.length);
+	var temp = theDeck[random1];
+	theDeck[random1] = theDeck[random2];
+	theDeck[random2] = temp;
+	}
+};
 
 function reset(){
-
-	//deck needs to be reset
-	//reset player and dealers arrays (hands) need to be reset
-	//reset the dom
-		// -cards
-		// -totals
 	theDeck = createDeck();
 	playersHand = [];
 	dealersHand = [];
+	handSize = 6;
+	cardHandHTML = '';
 	$('.card').html('');
 	$('.message span').html('');
 	playerTotal = calculateTotal(playersHand,'player');
 	dealerTotal = calculateTotal(dealersHand,'dealer');
-
-}
+	buildDivs();
+};
 
 
 function createDeck(){
@@ -176,10 +157,6 @@ function placeCard(who, where, whatCard){
 	// .dealer-cards .card-where .card-container .card-front
 
 	$(classSelector).html('<img src="images/' + whatCard + '.png">');
-
-	// if(classSelector == ".dealer-cards .card-2 .card-container .card-front"){
-	// 	$(classSelector).html('<img src="images/deck.png">');
-	// }
 
 	if(classSelector !== ".dealer-cards .card-2 .card-container .card-front"){
 	$(classSelector2).toggleClass('flip');
@@ -212,5 +189,18 @@ function calculateTotal(hand, who){
     $(classSelector).text(total);
     return total;
 
-}
+};
+
+function buildDivs(){
+	for(var i = 1; i < handSize; i++){
+		cardHandHTML += '<div class="col-sm-1 card card-'+i+'">';
+			cardHandHTML += '<div class="card-container">';
+				cardHandHTML += '<div class="card-front"></div>';
+				cardHandHTML += '<div class="card-back"></div>';
+			cardHandHTML += '</div>';
+		cardHandHTML += '</div>';
+	}
+	$('.dealer-cards').html(cardHandHTML);
+	$('.player-cards').html(cardHandHTML);
+};
 
