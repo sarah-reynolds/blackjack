@@ -55,6 +55,10 @@ $(document).ready(function(){
 
 		$('.dealer-total-number').html('?');
 
+		if($('#message-alert').html.length >0){
+			$('.dealer-cards').html(cardHandHTML);
+		}
+
 		// console.log("the deck length on hit:" + theDeck.length)
 		
 	})
