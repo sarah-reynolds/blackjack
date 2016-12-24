@@ -37,7 +37,7 @@ $(document).ready(function(){
 	$('.hit-button').click(function(){
 		if(calculateTotal(playersHand, 'player') < 21){
 
-		 playersHand.push(theDeck.shift());
+		playersHand.push(theDeck.shift());
 		var slotForNewCard = playersHand.length;
 
 
@@ -55,9 +55,9 @@ $(document).ready(function(){
 
 		$('.dealer-total-number').html('?');
 
-		if($('#message-alert').html.length >0){
-			$('.dealer-cards').html(cardHandHTML);
-		}
+		// if($('#message-alert').html.length >0){
+		// 	$('.dealer-cards').html(cardHandHTML);
+		// }
 
 		// console.log("the deck length on hit:" + theDeck.length)
 		
