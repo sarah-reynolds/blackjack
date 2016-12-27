@@ -3,7 +3,7 @@
 var theDeck = createDeck();
 var playersHand = [];
 var dealersHand = [];
-var handSize = 6;
+var handSize = 7;
 var cardHandHTML = '';
 
 
@@ -30,6 +30,7 @@ $(document).ready(function(){
 
 		calculateTotal(playersHand, 'player');
 		calculateTotal(dealersHand, 'dealer');
+		$('.dealer-total-number').html('?');
 		// console.log("the deck length on deal:" + theDeck.length)
 		// $(this).toggleClass('flip');
 	})
