@@ -133,7 +133,7 @@ function reset(){
 	theDeck = createDeck();
 	playersHand = [];
 	dealersHand = [];
-	handSize = 6;
+	handSize = 7;
 	cardHandHTML = '';
 	$('.card').html('');
 	$('.message span').html('');
