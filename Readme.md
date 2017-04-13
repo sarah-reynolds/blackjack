@@ -1,7 +1,7 @@
 # Blackjack game
 ## Made with JavaScript, jQuery, Bootstrap, and CSS
 
-###JavaScript features
+### JavaScript features 
 The game has 4 buttons: Deal, Hit, Stand, and Reset. JavaScript and jQuery are used to execute these 4 options -- as well as setting up the board upon page load -- through a series of functions and conditions. 
 - Page load
   * Upon page load, a jQuery document ready function is run to setup the page. 
@@ -26,7 +26,7 @@ The game has 4 buttons: Deal, Hit, Stand, and Reset. JavaScript and jQuery are u
     * The "buildDivs" function is called to build the HTML for the card placements.
 
 
-###Code snippet
+### Code snippet 
 Upon page load, the buildDivs function is called. This builds out the card divs HTML for the player and the dealer.
 ```
 function buildDivs(){
