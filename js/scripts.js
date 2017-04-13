@@ -146,6 +146,7 @@ function reset(){
 function createDeck(){
 	var newDeck = [];
 	var suits = ['h', 's', 'd', 'c'];
+	// var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
 	for(let s = 0; s<suits.length; s++){
 		for(let c = 1; c <= 13; c++){
